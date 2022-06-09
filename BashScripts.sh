@@ -1,6 +1,7 @@
 #!/bin/bash
 #COnnect and set Subscription Context in Azure
-az login
+Login-AzAccount
+Connect-AzAccount -TenantId 93f33571-550f-43cf-b09f-cd331338d086
 az account set --subscription "rsharma-Azure-LAB"
 
 
