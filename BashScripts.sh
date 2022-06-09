@@ -1,12 +1,12 @@
 #!/bin/bash
 #COnnect and set Subscription Context in Azure
 az login
-az account set --subscription "MPN - John Lunn"
+az account set --subscription "rsharma-Azure-LAB"
 
 
 #Set Variables for Storage account and Key Vault that support the Terraform implementation
-RESOURCE_GROUP_NAME=jonnychipz-infra
-STORAGE_ACCOUNT_NAME=jonnychipztstate
+RESOURCE_GROUP_NAME=terraform-demo
+STORAGE_ACCOUNT_NAME=terraformdemostate001
 CONTAINER_NAME=tstate
 STATE_FILE="terraform.state"
 
