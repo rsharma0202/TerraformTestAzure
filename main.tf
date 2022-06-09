@@ -1,9 +1,9 @@
 terraform {
   backend "azurerm" {
-    resource_group_name  = "dxc-mnue-rg-001"
-    storage_account_name = "vmdiagstor01"
-    container_name       = "terraform-state"
-    key                  = "k0ksERHny9wP7DIYAWXpdGtC1WBKPvFCm0J0tgu943WCVc4SqWsrJbnf+qHasKt8lTKIOtux80mwjwVuQgcZgw=="
+    resource_group_name  = "terraform-demo"
+    storage_account_name = "terraformdemostate001"
+    container_name       = "tstate"
+    key                  = "W+Q+w3Y21GacxgRTSCPQaag8hisrkxo4ucX1fkMR4JmwDV30hZNACJPpZ5h0mhFU1mgr61G7q/VQ+AStWwueKg=="
   }
 
   required_providers {
@@ -22,14 +22,14 @@ provider "azurerm" {
   }
 }
 data "azurerm_client_config" "current" {}
-# Create our Resource Group - rakeshchipz-RG
+# Create our Resource Group - jonnychipz-RG
 resource "azurerm_resource_group" "rg" {
-  name     = "rakeshchipz-app01"
+  name     = "jonnychipz-app01"
   location = "UK South"
 }
-# Create our Virtual Network - rakeshchipz-VNET
+# Create our Virtual Network - jonnychipz-VNET
 resource "azurerm_virtual_network" "vnet" {
-  name                = "rakeshchipzvnet"
+  name                = "jonnychipzvnet"
   address_space       = ["10.0.0.0/16"]
   location            = azurerm_resource_group.rg.location
   resource_group_name = azurerm_resource_group.rg.name
@@ -41,20 +41,20 @@ resource "azurerm_subnet" "sn" {
   virtual_network_name = azurerm_virtual_network.vnet.name
   address_prefixes     = ["10.0.1.0/24"]
 }
-# Create our Azure Storage Account - rakeshchipzsa
-resource "azurerm_storage_account" "rakeshchipzsa" {
-  name                     = "rakeshchipzsa"
+# Create our Azure Storage Account - jonnychipzsa
+resource "azurerm_storage_account" "jonnychipzsa" {
+  name                     = "jonnychipzsa"
   resource_group_name      = azurerm_resource_group.rg.name
   location                 = azurerm_resource_group.rg.location
   account_tier             = "Standard"
   account_replication_type = "LRS"
   tags = {
-    environment = "rakeshchipzenv1"
+    environment = "jonnychipzenv1"
   }
 }
 # Create our vNIC for our VM and assign it to our Virtual Machines Subnet
 resource "azurerm_network_interface" "vmnic" {
-  name                = "rakeshchipzvm01nic"
+  name                = "jonnychipzvm01nic"
   location            = azurerm_resource_group.rg.location
   resource_group_name = azurerm_resource_group.rg.name
 
@@ -64,9 +64,9 @@ resource "azurerm_network_interface" "vmnic" {
     private_ip_address_allocation = "Dynamic"
   }
 }
-# Create our Virtual Machine - rakeshchipz-VM01
-resource "azurerm_virtual_machine" "rakeshchipzvm01" {
-  name                  = "rakeshchipzvm01"
+# Create our Virtual Machine - jonnychipz-VM01
+resource "azurerm_virtual_machine" "jonnychipzvm01" {
+  name                  = "jonnychipzvm01"
   location              = azurerm_resource_group.rg.location
   resource_group_name   = azurerm_resource_group.rg.name
   network_interface_ids = [azurerm_network_interface.vmnic.id]
@@ -78,14 +78,14 @@ resource "azurerm_virtual_machine" "rakeshchipzvm01" {
     version   = "latest"
   }
   storage_os_disk {
-    name              = "rakeshchipzvm01os"
+    name              = "jonnychipzvm01os"
     caching           = "ReadWrite"
     create_option     = "FromImage"
     managed_disk_type = "Standard_LRS"
   }
   os_profile {
-    computer_name  = "rakeshchipzvm01"
-    admin_username = "rakeshchipz"
+    computer_name  = "jonnychipzvm01"
+    admin_username = "jonnychipz"
     admin_password = "Password123$"
   }
   os_profile_windows_config {

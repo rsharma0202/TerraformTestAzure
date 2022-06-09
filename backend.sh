@@ -1,6 +1,6 @@
 backend "azurerm" {
-    resource_group_name   = "jonnychipz-infra"
-    storage_account_name  = "jonnychipztstate"
-    container_name        = "tstate"
-    key                   = "77Q4LUB5o9wRdbPYDt+0kGZP+L8Sj9E/FNXg7lZBQS5z3mLod5cyan4wA19CR1SmlqIRUFQfhuQrPVaGzNhjGw=="
+ resource_group_name  = "terraform-demo"
+    storage_account_name = "terraformdemostate001"
+    container_name       = "tstate"
+    key                  = "W+Q+w3Y21GacxgRTSCPQaag8hisrkxo4ucX1fkMR4JmwDV30hZNACJPpZ5h0mhFU1mgr61G7q/VQ+AStWwueKg=="
 }
